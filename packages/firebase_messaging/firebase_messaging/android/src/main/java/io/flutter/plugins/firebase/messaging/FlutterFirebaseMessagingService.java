@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.moengage.firebase.MoEFireBaseHelper;
+import com.moengage.pushbase.MoEPushHelper;
 
 public class FlutterFirebaseMessagingService extends FirebaseMessagingService {
   @Override
@@ -22,5 +24,8 @@ public class FlutterFirebaseMessagingService extends FirebaseMessagingService {
   public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
     // Added for commenting purposes;
     // We don't handle the message here as we already handle it in the receiver and don't want to duplicate.
+    if (MoEPushHelper.getInstance().isFromMoEngagePlatform(remoteMessage.getData())) {
+      MoEFireBaseHelper.getInstance().passPushPayload(this, remoteMessage.getData());
+    }
   }
 }

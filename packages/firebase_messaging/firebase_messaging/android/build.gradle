@@ -53,6 +53,8 @@ android {
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
+
+    implementation "com.moengage:moe-android-sdk:11.4.02"
   }
 }
 
